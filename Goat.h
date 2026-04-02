@@ -12,6 +12,13 @@ private:
     string color;
 public: 
     Goat()                          { name = ""; age = 0; color = ""; }
+    Goat(string userName)           { name = userName; }
+    Goat(string userName, int userAge) { age = userAge; }
+    Goat(string userName, int userAge, string userColor) {
+        name = userName;
+        age = userAge;
+        color = userColor;
+    }
     // write three more constructors
 
     // setters and getters
