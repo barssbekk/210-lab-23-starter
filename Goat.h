@@ -58,6 +58,12 @@ public:
         }
         return choice;
     }
+
+    // TODO: add goat
+    void add_goat(list<Goat>& trip)
+
+    // TODO: delete goat
+    // TODO: print goat
 };
 
 #endif
