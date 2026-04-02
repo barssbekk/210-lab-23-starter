@@ -60,7 +60,9 @@ public:
     }
 
     // TODO: add goat
-    void add_goat(list<Goat>& trip)
+    void add_goat(list<Goat>& trip, string name[], string color[]) {
+
+    }
 
     // TODO: delete goat
     // TODO: print goat
