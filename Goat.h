@@ -11,10 +11,18 @@ private:
     int age;
     string color;
 public: 
-    Goat()                          { name = ""; age = 0; color = ""; }
-    Goat(string userName)           { name = userName; }
-    Goat(string userName, int userAge) { age = userAge; }
-    Goat(string userName, int userAge, string userColor) {
+    Goat() { name = ""; age = 0; color = ""; }
+    Goat(const string& userName) {
+        name = userName;
+        age = 0;
+        color = "";
+    }
+    Goat(const string& userName, const int userAge) {
+        name = userName;
+        age = userAge;
+        color = "";
+    }
+    Goat(const string& userName, const int userAge, const string& userColor) {
         name = userName;
         age = userAge;
         color = userColor;
