@@ -29,8 +29,8 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
-
-
+    Goat test;
+    test.main_menu();
 
     return 0;
 }

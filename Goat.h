@@ -42,6 +42,22 @@ public:
     bool operator < (const Goat& other) const {
         return name < other.name;
     }
+
+    int main_menu() {
+        int choice = 0;
+        cout << "*** GOAT MANAGER 3001 ***\n"
+             << "[1] Add a goat\n"
+             << "[2] Delete a goat\n"
+             << "[3] List goats\n"
+             << "[4] Quit\n"
+             << "Choice --> ";
+        cin >> choice;
+        while (choice < 1 || choice > 4) {
+            cerr << "Invalid input. Try again: ";
+            cin >> choice;
+        }
+        return choice;
+    }
 };
 
 #endif
