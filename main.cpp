@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iomanip>
 #include <list>
+#include <ctime>
 #include "Goat.h"
 using namespace std;
 
@@ -9,7 +10,7 @@ const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20, MIN_AGE = 1;
 
 int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
-void add_goat(list<Goat> &trip, string [], string [], int, int);
+void add_goat(list<Goat> &trip, string [], string []);
 void display_trip(list<Goat> trip);
 int main_menu();
 
@@ -30,15 +31,29 @@ int main() {
     ifstream fin1("colors.txt");
     string colors[SZ_COLORS];
     i = 0;
-    int colorCount = 0;
-    while (fin1 >> colors[colorCount]) {
-        ++colorCount;
+    while (i < SZ_COLORS && fin1 >> colors[i]) {
+        i++;
     }
     fin1.close();
+    list<Goat> trip;
+    while (again) {
+        int choice = main_menu();
 
-    list<Goat> test;
-    add_goat(test, names, colors, nameCount, colorCount);
-    display_trip(test);
+        switch (choice) {
+            case 1:
+                add_goat(trip, names, colors);
+                break;
+            case 2:
+                delete_goat(trip);
+                break;
+            case 3:
+                display_trip(trip);
+                break;
+            case 4:
+                again = false;
+                break;
+        }
+    }
 
     return 0;
 }
@@ -65,5 +80,21 @@ void display_trip(list<Goat> trip) {
              << ", " << g.get_color()
              << ")\n";
     }
+}
+
+int main_menu() {
+    int choice = 0;
+    cout << "*** GOAT MANAGER 3001 ***\n"
+         << "[1] Add a goat\n"
+         << "[2] Delete a goat\n"
+         << "[3] List goats\n"
+         << "[4] Quit\n"
+         << "Choice --> ";
+    cin >> choice;
+    while (choice < 1 || choice > 4) {
+        cerr << "Invalid input. Try again: ";
+        cin >> choice;
+    }
+    return choice;
 }
 
