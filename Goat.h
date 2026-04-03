@@ -5,7 +5,6 @@
 #include <iostream>
 using namespace std;
 
-
 class Goat {
 private:
     string name;
@@ -43,7 +42,6 @@ public:
     bool operator < (const Goat& other) const {
         return name < other.name;
     }
-
 };
 
 #endif

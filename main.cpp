@@ -67,7 +67,29 @@ void add_goat(list<Goat>& trip, string names[], string colors[],
     trip.sort();
 }
 
+int select_goat(list<Goat> trip) {
+    int index = 1;
 
+    for (Goat goat : trip) {
+        cout << "[" << index++ << "] "
+             << goat.get_name()
+             << " (" << goat.get_age()
+             << ", " << goat.get_color()
+             << ")\n";
+    }
+
+    int choice;
+    cout << "Choice --> ";
+    cin >> choice;
+
+    while (choice < 1 || choice >= index) {
+        cin.clear();
+        cin.ignore();
+        cout << "Choice --> ";
+        cin >> choice;
+    }
+    return choice;
+}
 
 // TODO: delete goat
 void delete_goat(list<Goat>& trip) {
