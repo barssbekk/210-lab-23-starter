@@ -5,7 +5,6 @@
 #include "Goat.h"
 using namespace std;
 
-
 int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
