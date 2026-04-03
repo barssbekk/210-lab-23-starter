@@ -10,7 +10,7 @@ const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20, MIN_AGE = 1;
 
 int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
-void add_goat(list<Goat> &trip, string [], string []);
+void add_goat(list<Goat> &trip, string [], string [], int, int);
 void display_trip(list<Goat> trip);
 int main_menu();
 
@@ -21,18 +21,19 @@ int main() {
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
     string names[SZ_NAMES];
-    int i = 0;
-    while (i < SZ_NAMES && fin >> names[i]) {
-        i++;
+    int nameCount = 0;
+    while (nameCount < SZ_NAMES && fin >> names[nameCount]) {
+        ++nameCount;
     }
 
     fin.close();
     ifstream fin1("colors.txt");
     string colors[SZ_COLORS];
-    i = 0;
-    while (i < SZ_COLORS && fin1 >> colors[i]) {
-        i++;
+    int colorCount = 0;
+    while (colorCount < SZ_COLORS && fin1 >> colors[colorCount]) {
+        ++colorCount;
     }
+
     fin1.close();
     list<Goat> trip;
     while (again) {
@@ -40,7 +41,7 @@ int main() {
 
         switch (choice) {
             case 1:
-                add_goat(trip, names, colors);
+                add_goat(trip, names, colors, nameCount, colorCount);
                 break;
             case 2:
                 delete_goat(trip);
@@ -57,17 +58,25 @@ int main() {
     return 0;
 }
 
-void add_goat(list<Goat>& trip, string names[], string colors[]) {
-    string rndName = names[rand() % SZ_NAMES];
-    string rndColors = colors[rand() % SZ_COLORS];
+void add_goat(list<Goat>& trip, string names[], string colors[],
+              int nameCount, int colorCount) {
+    string rndName = names[rand() % nameCount];
+    string rndColors = colors[rand() % colorCount];
     int rndAge = rand() % (MAX_AGE - MIN_AGE + 1) + MIN_AGE;
     trip.push_back(Goat(rndName, rndAge, rndColors));
     trip.sort();
 }
 
+
+
 // TODO: delete goat
 void delete_goat(list<Goat>& trip) {
     if (trip.empty()) return;
+    int choice = select_goat(trip);
+
+    auto it = trip.begin();
+    advance(it, choice - 1);
+    trip.erase(it);
 }
 
 // TODO: print goat
