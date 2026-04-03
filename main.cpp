@@ -21,18 +21,17 @@ int main() {
     ifstream fin("names.txt");
     string names[SZ_NAMES];
     int i = 0;
-
-    int nameCount = 0;
-    while (fin >> names[nameCount]) {
-        ++nameCount;
+    while (i < SZ_NAMES && fin >> names[i]) {
+        i++;
     }
+    fin.close();
 
     fin.close();
     ifstream fin1("colors.txt");
     string colors[SZ_COLORS];
     i = 0;
     int colorCount = 0;
-    while (fin1 >> colors[i++]) {
+    while (fin1 >> colors[colorCount]) {
         ++colorCount;
     }
     fin1.close();
