@@ -9,7 +9,7 @@ const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20, MIN_AGE = 1;
 
 int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
-void add_goat(list<Goat> &trip, string [], string []);
+void add_goat(list<Goat> &trip, string [], string [], int, int);
 void display_trip(list<Goat> trip);
 int main_menu();
 
@@ -21,24 +21,33 @@ int main() {
     ifstream fin("names.txt");
     string names[SZ_NAMES];
     int i = 0;
-    while (fin >> names[i++]);
+
+    int nameCount = 0;
+    while (fin >> names[nameCount]) {
+        ++nameCount;
+    }
+
     fin.close();
     ifstream fin1("colors.txt");
     string colors[SZ_COLORS];
     i = 0;
-    while (fin1 >> colors[i++]);
+    int colorCount = 0;
+    while (fin1 >> colors[i++]) {
+        ++colorCount;
+    }
     fin1.close();
 
     list<Goat> test;
-    add_goat(test, names, colors);
+    add_goat(test, names, colors, nameCount, colorCount);
     display_trip(test);
 
     return 0;
 }
 
-void add_goat(list<Goat>& trip, string names[], string colors[]) {
-    string rndName = names[rand() % SZ_NAMES];
-    string rndColors = colors[rand() % SZ_COLORS];
+void add_goat(list<Goat>& trip, string names[], string colors[],
+              int nameCount, int colorCount) {
+    string rndName = names[rand() % nameCount];
+    string rndColors = colors[rand() % colorCount];
     int rndAge = rand() % (MAX_AGE - MIN_AGE + 1) + MIN_AGE;
     trip.push_back(Goat(rndName, rndAge, rndColors));
 }
