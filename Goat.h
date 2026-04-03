@@ -5,6 +5,8 @@
 #include <iostream>
 using namespace std;
 
+const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
+
 class Goat {
 private:
     string name;
@@ -60,8 +62,8 @@ public:
     }
 
     // TODO: add goat
-    void add_goat(list<Goat>& trip, string name[], string color[]) {
-
+    void add_goat(list<Goat>& trip, string names[], string colors[]) {
+        string rndName = names[rand() % SZ_NAMES];
     }
 
     // TODO: delete goat

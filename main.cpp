@@ -5,7 +5,6 @@
 #include "Goat.h"
 using namespace std;
 
-const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
 int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
