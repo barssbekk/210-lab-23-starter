@@ -5,6 +5,8 @@
 #include "Goat.h"
 using namespace std;
 
+const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20, MIN_AGE = 1;
+
 int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
@@ -28,7 +30,32 @@ int main() {
     fin1.close();
 
     list<Goat> test;
+    add_goat(test, names, colors);
+    display_trip(test);
 
     return 0;
+}
+
+void add_goat(list<Goat>& trip, string names[], string colors[]) {
+    string rndName = names[rand() % SZ_NAMES];
+    string rndColors = colors[rand() % SZ_COLORS];
+    int rndAge = rand() % (MAX_AGE - MIN_AGE + 1) + MIN_AGE;
+    trip.push_back(Goat(rndName, rndAge, rndColors));
+}
+
+// TODO: delete goat
+void delete_goat(list<Goat>& trip) {
+
+}
+// TODO: print goat
+void display_trip(list<Goat> trip) {
+    int index = 1;
+    for (Goat g : trip) {
+        cout << "[" << index++ << "] "
+             << g.get_name()
+             << " (" << g.get_age()
+             << ", " << g.get_color()
+             << ")\n";
+    }
 }
 
